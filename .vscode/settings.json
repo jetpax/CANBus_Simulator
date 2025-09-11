@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.ino": "cpp",
+        "lvgl.h": "c",
+        "random": "cpp"
+    }
+}
