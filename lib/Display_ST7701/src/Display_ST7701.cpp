@@ -68,259 +68,257 @@ void st7701_init() {
 
   st7701_cs_en();
   st7701_write_command(0xFF);
-  st7701_write_data(0x77);
-  st7701_write_data(0x01);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
-  st7701_write_data(0x10);
+    st7701_write_data(0x77);
+    st7701_write_data(0x01);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
+    st7701_write_data(0x10);
 
-  st7701_write_command(0xC0);
-  st7701_write_data(0x3B); //Scan line	
-  st7701_write_data(0x00);
+    st7701_write_command(0xC0);
+    st7701_write_data(0x3B);//Scan line	
+    st7701_write_data(0x00);
 
-  st7701_write_command(0xC1);
-  st7701_write_data(0x0B);	//VBP
-  st7701_write_data(0x02);
+    st7701_write_command(0xC1);
+    st7701_write_data(0x0B);	//VBP
+    st7701_write_data(0x02);
 
-  st7701_write_command(0xC2);
-  st7701_write_data(0x07);
-  st7701_write_data(0x02);
+    st7701_write_command(0xC2);
+    st7701_write_data(0x07);
+    st7701_write_data(0x02);
 
-  st7701_write_command(0xCC);
-  st7701_write_data(0x10);
+    st7701_write_command(0xCC);
+    st7701_write_data(0x10);
 
-  st7701_write_command(0xCD);  //RGB format
-  st7701_write_data(0x08);
+    st7701_write_command(0xCD);//RGB format
+    st7701_write_data(0x08);
 
-  st7701_write_command(0xB0);  // IPS   
-  st7701_write_data(0x00);     // 255 
-  st7701_write_data(0x11);     // 251    
-  st7701_write_data(0x16);     // 247  down
-  st7701_write_data(0x0e);     // 239    
-  st7701_write_data(0x11);     // 231    
-  st7701_write_data(0x06);     // 203    
-  st7701_write_data(0x05);     // 175 
-  st7701_write_data(0x09);     // 147    
-  st7701_write_data(0x08);     // 108    
-  st7701_write_data(0x21);     // 80  
-  st7701_write_data(0x06);     // 52   
+    st7701_write_command(0xB0); // IPS   
+    st7701_write_data(0x00); // 255 
+    st7701_write_data(0x11); // 251    
+    st7701_write_data(0x16); // 247  down
+    st7701_write_data(0x0e); // 239    
+    st7701_write_data(0x11); // 231    
+    st7701_write_data(0x06); // 203    
+    st7701_write_data(0x05); // 175 
+    st7701_write_data(0x09); // 147    
+    st7701_write_data(0x08); // 108    
+    st7701_write_data(0x21); // 80  
+    st7701_write_data(0x06); // 52   
+    st7701_write_data(0x13); // 24    
+    st7701_write_data(0x10); // 16    
+    st7701_write_data(0x29); // 8    down
+    st7701_write_data(0x31); // 4    
+    st7701_write_data(0x18); // 0   
 
-  st7701_write_command(0xB1);  //  IPS     
-  st7701_write_data(0x00);     //  255 
-  st7701_write_data(0x11);     //  251
-  st7701_write_data(0x16);     //  247   down
-  st7701_write_data(0x0e);     //  239
-  st7701_write_data(0x11);     //  231
-  st7701_write_data(0x07);     //  203    
-  st7701_write_data(0x05);     //  175
-  st7701_write_data(0x09);     //  147  
-  st7701_write_data(0x09);     //  108  
-  st7701_write_data(0x21);     //  80 
-  st7701_write_data(0x05);     //  52   
-  st7701_write_data(0x13);     //  24 
-  st7701_write_data(0x11);     //  16 
-  st7701_write_data(0x2a);     //  8  down 
-  st7701_write_data(0x31);     //  4  
-  st7701_write_data(0x18);     //  0  
+    st7701_write_command(0xB1);//  IPS	   
+    st7701_write_data(0x00);//  255 
+    st7701_write_data(0x11);//  251
+    st7701_write_data(0x16);//  247   down
+    st7701_write_data(0x0e);//  239
+    st7701_write_data(0x11);//  231
+    st7701_write_data(0x07);//  203    
+    st7701_write_data(0x05);//  175
+    st7701_write_data(0x09);//  147  
+    st7701_write_data(0x09);//  108  
+    st7701_write_data(0x21);//  80 
+    st7701_write_data(0x05);//  52   
+    st7701_write_data(0x13);//  24 
+    st7701_write_data(0x11);//  16 
+    st7701_write_data(0x2a);//  8  down 
+    st7701_write_data(0x31);//  4  
+    st7701_write_data(0x18);//  0  
 
-  st7701_write_command(0xFF);
-  st7701_write_data(0x77);
-  st7701_write_data(0x01);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
-  st7701_write_data(0x11);
+    st7701_write_command(0xFF);
+    st7701_write_data(0x77);
+    st7701_write_data(0x01);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
+    st7701_write_data(0x11);
 
-  st7701_write_command(0xB0);  // VOP  3.5375+ *x 0.0125
-  st7701_write_data(0x6d);     // 5D
-  
-  st7701_write_command(0xB1);   // VCOM amplitude setting  
-  st7701_write_data(0x37);
-  
-  st7701_write_command(0xB2);   // VGH Voltage setting  
-  st7701_write_data(0x81);      // 12V
+    st7701_write_command(0xB0);  //VOP  3.5375+ *x 0.0125
+    st7701_write_data(0x6d);  //5D
+    
+    st7701_write_command(0xB1); 	//VCOM amplitude setting  
+    st7701_write_data(0x37);  //
+    
+    st7701_write_command(0xB2); 	//VGH Voltage setting  
+    st7701_write_data(0x81);	//12V
 
-  st7701_write_command(0xB3);
-  st7701_write_data(0x80);
+    st7701_write_command(0xB3);
+    st7701_write_data(0x80);
 
-  st7701_write_command(0xB5);   // VGL Voltage setting  
-  st7701_write_data(0x43);      //-8.3V
+    st7701_write_command(0xB5); 	//VGL Voltage setting  
+    st7701_write_data(0x43);	//-8.3V
 
-  st7701_write_command(0xB7);
-  st7701_write_data(0x85);
+    st7701_write_command(0xB7);
+    st7701_write_data(0x85);
 
-  st7701_write_command(0xB8);
-  st7701_write_data(0x20);
+    st7701_write_command(0xB8);
+    st7701_write_data(0x20);
 
-  st7701_write_command(0xC1);
-  st7701_write_data(0x78);
+    st7701_write_command(0xC1);
+    st7701_write_data(0x78);
 
-  st7701_write_command(0xC2);
-  st7701_write_data(0x78);
+    st7701_write_command(0xC2);
+    st7701_write_data(0x78);
 
-  st7701_write_command(0xD0);
-  st7701_write_data(0x88);
+    st7701_write_command(0xD0);
+    st7701_write_data(0x88);
 
-  st7701_write_command(0xE0);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
-  st7701_write_data(0x02);
+    st7701_write_command(0xE0);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
+    st7701_write_data(0x02);
 
-  st7701_write_command(0xE1);
-  st7701_write_data(0x03);  
-  st7701_write_data(0xA0);
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);
-  st7701_write_data(0x04);  
-  st7701_write_data(0xA0);
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);
-  st7701_write_data(0x20);
-  st7701_write_data(0x20);
+    st7701_write_command(0xE1);
+    st7701_write_data(0x03);	
+    st7701_write_data(0xA0);
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);
+    st7701_write_data(0x04);	
+    st7701_write_data(0xA0);
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);
+    st7701_write_data(0x20);
+    st7701_write_data(0x20);
 
-  st7701_write_command(0xE2);
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);    
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);
+    st7701_write_command(0xE2);
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	  
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);
 
-  st7701_write_command(0xE3);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
-  st7701_write_data(0x11);
-  st7701_write_data(0x00);
+    st7701_write_command(0xE3);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
+    st7701_write_data(0x11);
+    st7701_write_data(0x00);
 
-  st7701_write_command(0xE4);
-  st7701_write_data(0x22);
-  st7701_write_data(0x00);
+    st7701_write_command(0xE4);
+    st7701_write_data(0x22);
+    st7701_write_data(0x00);
 
-  st7701_write_command(0xE5);    
-  st7701_write_data(0x05);  
-  st7701_write_data(0xEC);  
-  st7701_write_data(0xA0);
-  st7701_write_data(0xA0);
-  st7701_write_data(0x07);  
-  st7701_write_data(0xEE);  
-  st7701_write_data(0xA0);
-  st7701_write_data(0xA0);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
+    st7701_write_command(0xE5);		
+    st7701_write_data(0x05);	
+    st7701_write_data(0xEC);	
+    st7701_write_data(0xA0);
+    st7701_write_data(0xA0);
+    st7701_write_data(0x07);	
+    st7701_write_data(0xEE);	
+    st7701_write_data(0xA0);
+    st7701_write_data(0xA0);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
 
-  st7701_write_command(0xE6);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
-  st7701_write_data(0x11);
-  st7701_write_data(0x00);
+    st7701_write_command(0xE6);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
+    st7701_write_data(0x11);
+    st7701_write_data(0x00);
 
-  st7701_write_command(0xE7);
-  st7701_write_data(0x22);
-  st7701_write_data(0x00);
+    st7701_write_command(0xE7);
+    st7701_write_data(0x22);
+    st7701_write_data(0x00);
 
-  st7701_write_command(0xE8);    
-  st7701_write_data(0x06);  
-  st7701_write_data(0xED);  
-  st7701_write_data(0xA0);
-  st7701_write_data(0xA0);
-  st7701_write_data(0x08);  
-  st7701_write_data(0xEF);  
-  st7701_write_data(0xA0); 
-  st7701_write_data(0xA0);
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);  
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
+    st7701_write_command(0xE8);		
+    st7701_write_data(0x06);	
+    st7701_write_data(0xED);	
+    st7701_write_data(0xA0);
+    st7701_write_data(0xA0);
+    st7701_write_data(0x08);	
+    st7701_write_data(0xEF);	
+    st7701_write_data(0xA0); 
+    st7701_write_data(0xA0);
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);	
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
 
-  st7701_write_command(0xEB);
-  st7701_write_data(0x00);   
-  st7701_write_data(0x00);
-  st7701_write_data(0x40);
-  st7701_write_data(0x40);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);  
+    st7701_write_command(0xEB);
+    st7701_write_data(0x00); 	
+    st7701_write_data(0x00);
+    st7701_write_data(0x40);
+    st7701_write_data(0x40);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);  
 
-  st7701_write_command(0xED);  
-  st7701_write_data(0xFF); 
-  st7701_write_data(0xFF);  
-  st7701_write_data(0xFF);   
-  st7701_write_data(0xBA);     
-  st7701_write_data(0x0A);   
-  st7701_write_data(0xBF);   
-  st7701_write_data(0x45);   
-  st7701_write_data(0xFF); 
-  st7701_write_data(0xFF);  
-  st7701_write_data(0x54);   
-  st7701_write_data(0xFB);   
-  st7701_write_data(0xA0);   
-  st7701_write_data(0xAB);   
-  st7701_write_data(0xFF); 
-  st7701_write_data(0xFF); 
-  st7701_write_data(0xFF); 
+    st7701_write_command(0xED);  
+    st7701_write_data(0xFF); 
+    st7701_write_data(0xFF);  
+    st7701_write_data(0xFF); 	
+    st7701_write_data(0xBA); 		
+    st7701_write_data(0x0A); 	
+    st7701_write_data(0xBF); 	
+    st7701_write_data(0x45); 	
+    st7701_write_data(0xFF); 
+    st7701_write_data(0xFF);  
+    st7701_write_data(0x54); 	
+    st7701_write_data(0xFB); 	
+    st7701_write_data(0xA0); 	
+    st7701_write_data(0xAB); 	
+    st7701_write_data(0xFF); 
+    st7701_write_data(0xFF); 
+    st7701_write_data(0xFF); 
 
-  st7701_write_command(0xEF);
-  st7701_write_data(0x10); 
-  st7701_write_data(0x0D); 
-  st7701_write_data(0x04); 
-  st7701_write_data(0x08); 
-  st7701_write_data(0x3F); 
-  st7701_write_data(0x1F);
+    st7701_write_command(0xEF);
+    st7701_write_data(0x10); 
+    st7701_write_data(0x0D); 
+    st7701_write_data(0x04); 
+    st7701_write_data(0x08); 
+    st7701_write_data(0x3F); 
+    st7701_write_data(0x1F);
 
-  st7701_write_command(0xFF);
-  st7701_write_data(0x77);
-  st7701_write_data(0x01);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
-  st7701_write_data(0x13);
+    st7701_write_command(0xFF);
+    st7701_write_data(0x77);
+    st7701_write_data(0x01);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
+    st7701_write_data(0x13);
 
-  st7701_write_command(0xEF);
-  st7701_write_data(0x08);
+    st7701_write_command(0xEF);
+    st7701_write_data(0x08);
 
-  st7701_write_command(0xFF);
-  st7701_write_data(0x77);
-  st7701_write_data(0x01);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
-  st7701_write_data(0x00);
+    st7701_write_command(0xFF);
+    st7701_write_data(0x77);
+    st7701_write_data(0x01);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
+    st7701_write_data(0x00);
 
 
-  st7701_write_command(0x36);
-  st7701_write_data(0x00);
+    st7701_write_command(0x36);
+    st7701_write_data(0x00);
 
-  st7701_write_command(0x3A);
-  st7701_write_data(0x66);
+    st7701_write_command(0x3A);
+    st7701_write_data(0x66);
 
-  st7701_write_command(0x11);
-  
-  vTaskDelay(pdMS_TO_TICKS(480));
+    st7701_write_command(0x11);
+    vTaskDelay(pdMS_TO_TICKS(480)); 
 
-  st7701_write_command(0x20); //
-  vTaskDelay(pdMS_TO_TICKS(120));
-  st7701_write_command(0x29); 
-  st7701_cs_dis();
-  vTaskDelay(pdMS_TO_TICKS(480));
-
-  st7701_write_command(0x20); //
-  vTaskDelay(pdMS_TO_TICKS(120));
-  st7701_write_command(0x29); 
+    st7701_write_command(0x20); //
+    vTaskDelay(pdMS_TO_TICKS(120));
+    st7701_write_command(0x29); 
   st7701_cs_dis();
 
   //  RGB
