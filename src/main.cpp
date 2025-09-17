@@ -22,15 +22,17 @@ typedef enum {
 } EndianType;
 
 typedef enum {
-    BUTTON_MODE_NONE,
-    BUTTON_MODE_TOGGLE,
-    BUTTON_MODE_MOMENTARY
-} ButtonMode;
+    MODE_NONE,
+    MODE_TOGGLE,
+    MODE_MOMENTARY,
+    MODE_TIMER
+} ChangeMode;
 
 typedef struct {
     int value;              // 0 or 1
-    ButtonMode button_mode; // toggle/momentary/none
+    ChangeMode change_mode; // toggle/momentary/timer/none
     int exio_pin;           // EXIO pin number, or -1 if not used
+    int timer_duration;     // in ms, for timer mode
 } BitConfig;
 
 typedef struct {
@@ -47,49 +49,36 @@ typedef struct {
     ByteConfig bytes[8]; // 8 bytes per CAN message
 } CanMessageConfig;
 
-const int DATA_RATE = 200; // ms between CAN sends
+const int DATA_RATE = 100; // ms between CAN sends
 
 CanMessageConfig can_signals[] = {
   {
-    0x551,
+    0x001,
     {
-      {RANGE, { .range = {0, 180, 0, 5, 1, NONE} }},
-      {STATIC, {0}},
-      {STATIC, {0}},
-      {RANGE, { .range = {0, 4, 0, 1, 1, MSB} }},
-      {RANGE, { .range = {0, 255, 0, 30, 1, LSB} }},
-      {STATIC, {0}},
-      {STATIC, {0}},
-      {STATIC, {0}}
-    }
-  },
-  {
-    0x555,
-    {
-      {STATIC, {0}},
-      {STATIC, {0}},
-      {BITS, { .bits = {
-        {0, BUTTON_MODE_NONE, -1}, // bit 0
-        {0, BUTTON_MODE_NONE, -1}, // bit 1
-        {0, BUTTON_MODE_NONE, -1}, // bit 2
-        {0, BUTTON_MODE_NONE, -1}, // bit 3
-        {0, BUTTON_MODE_MOMENTARY, EXIO_PIN7}, // bit 4
-        {0, BUTTON_MODE_TOGGLE, EXIO_PIN5}, // bit 5
-        {0, BUTTON_MODE_NONE, -1}, // bit 6
-        {0, BUTTON_MODE_NONE, -1}  // bit 7
+      {RANGE, { .range = {0, 180, 0, 1, 1, NONE} }}, // 0 - coolant temp
+      {RANGE, { .range = {0, 180, 0, 1, 1, NONE} }}, // 1 - oil temp
+      {RANGE, { .range = {0, 120, 0, 1, 1, NONE} }}, // 2 - oil pressure
+      {RANGE, { .range = {0, 120, 0, 1, 1, NONE} }}, // 3 - speed
+      {RANGE, { .range = {0, 4, 0, 1, 1, MSB} }}, // 4 - rpm msb
+      {RANGE, { .range = {0, 255, 0, 5, 1, LSB} }}, // 5 - rpm lsb
+      {BITS, { .bits = { // 6
+        {1, MODE_TIMER, -1, 1000}, // indicator left
+        {0, MODE_TIMER, -1, 1000}, // indicator right
+        {0, MODE_NONE, -1, 0}, // bit 2
+        {0, MODE_NONE, -1, 0}, // bit 3
+        {1, MODE_NONE, -1, 0}, // bit 4
+        {1, MODE_NONE, -1, 0}, // bit 5
+        {0, MODE_NONE, -1, 0}, // bit 6
+        {0, MODE_NONE, -1, 0}  // bit 7
       }}},
-      {STATIC, {0}},
-      {STATIC, {0}},
-      {STATIC, {0}},
-      {STATIC, {0}},
-      {STATIC, {0}}
+      {STATIC, {0}}, // 7 - unused
     }
   },
 };
 
 const int num_signals = sizeof(can_signals) / sizeof(CanMessageConfig);
 
-// CONTROL VARIABLE INIT
+// CONTROL VARIABLE INITWell t
 bool initial_load             = false; // has the first data been received
 
 lv_obj_t *main_scr;
@@ -226,7 +215,7 @@ void send_can_sim_task(void *arg) {
         Serial.printf("Failed to transmit TWAI message ID 0x%03X: %d\n", can_signals[i].can_id, err);
       }
     }
-    vTaskDelay(pdMS_TO_TICKS(DATA_RATE)); // 100Hz
+    vTaskDelay(pdMS_TO_TICKS(DATA_RATE)); // 10Hz
   }
 }
 
@@ -249,6 +238,9 @@ void loop(void) {
 
   // handle EXIO inputs - button press logic
   static bool last_exio_state[8] = {0};
+  static unsigned long last_timer_toggle[8][8] = {{0}}; // [can_signal][bit]
+  unsigned long now = millis();
+
   for (int i = 0; i < num_signals; i++) {
     for (int j = 0; j < 8; j++) {
       ByteConfig &byte_cfg = can_signals[i].bytes[j];
@@ -257,14 +249,21 @@ void loop(void) {
           BitConfig &bit = byte_cfg.data.bits[b];
           if (bit.exio_pin >= 0) {
             bool exio_state = read_exio(bit.exio_pin);
-            if (bit.button_mode == BUTTON_MODE_TOGGLE) {
+            if (bit.change_mode == MODE_TOGGLE) {
               if (exio_state && !last_exio_state[bit.exio_pin]) {
                 bit.value = !bit.value;
               }
-            } else if (bit.button_mode == BUTTON_MODE_MOMENTARY) {
+            } else if (bit.change_mode == MODE_MOMENTARY) {
               bit.value = exio_state ? 0 : 1;
             }
             last_exio_state[bit.exio_pin] = exio_state;
+          }
+          // TIMER mode: toggle value if timer_duration has passed
+          if (bit.change_mode == MODE_TIMER && bit.timer_duration > 0) {
+            if (now - last_timer_toggle[i][b] >= (unsigned long)bit.timer_duration) {
+              bit.value = !bit.value;
+              last_timer_toggle[i][b] = now;
+            }
           }
         }
       }
